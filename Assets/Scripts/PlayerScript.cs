@@ -15,12 +15,16 @@ public class PlayerScript : MonoBehaviour
     public float deathBorderX;
     public AudioSource jumpSource;
     public AudioClip jumpSound;
+    public SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get rigidbody
         rb = GetComponent<Rigidbody2D>();
+
+        // Get sprite renderer to flip sprite
+        sr = GetComponent<SpriteRenderer>();
 
         // NOTE: Score code is from ApplePicker
         // Get score object and update score
@@ -37,6 +41,25 @@ public class PlayerScript : MonoBehaviour
         // Move horizontal
         float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.position += new Vector3(horizontal, 0, 0);
+
+        // Get current flip value
+        bool currentFlip = sr.flipX;
+
+        // Flip sprite to left if horizontal is negative
+        if (horizontal < 0)
+        {
+            sr.flipX = true;
+        }
+        // If horizontal is positive then keep sprite not flipped (facing right)
+        else if (horizontal > 0)
+        {
+            sr.flipX = false;
+        }
+        else
+        {
+            // This keeps sprite facing same way as the player left off (horizontal == 0)
+            sr.flipX = currentFlip;
+        }
 
         // Check for border
         Vector3 pos = transform.position;
