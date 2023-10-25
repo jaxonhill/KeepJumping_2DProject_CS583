@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1990124657847765910
 BoxCollider2D:
@@ -149,12 +149,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   jumpHeight: 30
+  bouncePadHeight: 50
+  enemyHeadBounceHeight: 50
   ground: {fileID: 9146558871730451357, guid: d08c0846a739bf044baf63aab4d60199, type: 3}
   rb: {fileID: 0}
   gt: {fileID: 0}
   deathBorderX: 43
   jumpSource: {fileID: 6937984244755650216}
   jumpSound: {fileID: 8300000, guid: 7a5cd7fa1eab0224084bdc4c61762b56, type: 3}
+  sr: {fileID: 0}
 --- !u!82 &6937984244755650216
 AudioSource:
   m_ObjectHideFlags: 0

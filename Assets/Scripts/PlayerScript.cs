@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour
 
     public float speed = 10f;
     public float jumpHeight = 10f;
+    public float bouncePadHeight = 10f;
+    public float enemyHeadBounceHeight = 10f;
     public GameObject ground;
     public Rigidbody2D rb;
     public TextMeshProUGUI gt;
@@ -80,6 +82,12 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Check collision of spikes before ground, just based on way collisions work on this game
+        if (collision.gameObject.tag == "Spikes")
+        {
+            // Reset scene, game over
+            SceneManager.LoadScene("_Scene_01");
+        }
         if (collision.gameObject.tag == "Ground")
         {
             // Play jump sound effect
@@ -93,6 +101,17 @@ public class PlayerScript : MonoBehaviour
 
             // Do something, NOTE: I found ForceMode2D.Impulse through documentation because this wasn't working correctly originally
             rb.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
+        }
+        // Add a lot of force for bounce pad
+        if (collision.gameObject.tag == "BouncePad")
+        {
+            rb.AddForce(new Vector2(0, bouncePadHeight), ForceMode2D.Impulse);
+        }
+        // Bounce off enemy head
+        if (collision.gameObject.tag == "EnemyHead")
+        {
+            rb.AddForce(new Vector2(0, enemyHeadBounceHeight), ForceMode2D.Impulse);
+            Destroy(collision.gameObject);
         }
     }
 }
