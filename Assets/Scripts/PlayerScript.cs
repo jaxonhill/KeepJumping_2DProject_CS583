@@ -19,6 +19,10 @@ public class PlayerScript : MonoBehaviour
     public float deathBorderX;
     public AudioSource jumpSource;
     public AudioClip jumpSound;
+    public AudioSource boostSource;
+    public AudioClip boostSound;
+    public AudioSource damageSource;
+    public AudioClip damageSound;
     public SpriteRenderer sr;
 
     // Start is called before the first frame update
@@ -93,6 +97,10 @@ public class PlayerScript : MonoBehaviour
         // Check collision of spikes before ground, just based on way collisions work on this game
         if (collision.gameObject.tag == "Spikes" && !GOD_MODE)
         {
+            // Play damage sound effect
+            damageSource.PlayOneShot(damageSound);
+            
+
             // Reset scene, game over
             SceneManager.LoadScene("_Scene_01");
         }
@@ -113,11 +121,19 @@ public class PlayerScript : MonoBehaviour
         // Add a lot of force for bounce pad
         if (collision.gameObject.tag == "BouncePad")
         {
+            // Play sound effect
+            boostSource.PlayOneShot(boostSound);
+
+            // Add boost
             rb.AddForce(new Vector2(0, bouncePadHeight), ForceMode2D.Impulse);
         }
         // Bounce off enemy head
         if (collision.gameObject.tag == "EnemyHead")
         {
+            // Play sound effect
+            boostSource.PlayOneShot(boostSound);
+
+            // Add boost and delete the enemy
             rb.AddForce(new Vector2(0, enemyHeadBounceHeight), ForceMode2D.Impulse);
             Destroy(collision.gameObject);
         }

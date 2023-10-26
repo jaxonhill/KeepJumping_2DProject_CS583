@@ -27,7 +27,7 @@ public class Manager : MonoBehaviour
         SpawnStars();
 
         // Start spawning obstacles after 2 minutes (after the "tutorial" 6 obstacles are done passing)
-        Invoke("SpawnRandomObstacle", 1f);
+        Invoke("SpawnRandomObstacle", 120f);
     }
 
     // Update is called once per frame
