@@ -90,6 +90,12 @@ public class PlayerScript : MonoBehaviour
         score += 1;
         // Convert the score back to a string and display it
         gt.text = score.ToString();
+
+        // Track the High Score
+        if (score > HighScore.score)
+        {
+            HighScore.score = score;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
