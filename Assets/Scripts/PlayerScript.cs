@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
     public float jumpHeight = 10f;
     public float bouncePadHeight = 10f;
     public float enemyHeadBounceHeight = 10f;
+    public bool GOD_MODE = false;
+    public float godModeJumpHeight = 10f;
     public GameObject ground;
     public Rigidbody2D rb;
     public TextMeshProUGUI gt;
@@ -44,6 +46,12 @@ public class PlayerScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.position += new Vector3(horizontal, 0, 0);
 
+        // GOD MODE jumping
+        if (Input.GetButtonDown("Jump") && GOD_MODE)
+        {
+            rb.AddForce(new Vector2(0, godModeJumpHeight), ForceMode2D.Impulse);
+        }
+
         // Get current flip value
         bool currentFlip = sr.flipX;
 
@@ -65,7 +73,7 @@ public class PlayerScript : MonoBehaviour
 
         // Check for border
         Vector3 pos = transform.position;
-        if (pos.x >= deathBorderX || pos.x <= -deathBorderX)
+        if ((pos.x >= deathBorderX || pos.x <= -deathBorderX) && !GOD_MODE)
         {
             SceneManager.LoadScene("_Scene_01");
         }
@@ -83,7 +91,7 @@ public class PlayerScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Check collision of spikes before ground, just based on way collisions work on this game
-        if (collision.gameObject.tag == "Spikes")
+        if (collision.gameObject.tag == "Spikes" && !GOD_MODE)
         {
             // Reset scene, game over
             SceneManager.LoadScene("_Scene_01");

@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: -5
   boundaryToDespawn: -100
+  uniqueStartHeight: -4.45
+  uniqueStartX: 74
 --- !u!1001 &3841136827747357879
 PrefabInstance:
   m_ObjectHideFlags: 0

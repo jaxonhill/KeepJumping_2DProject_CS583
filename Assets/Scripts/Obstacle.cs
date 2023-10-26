@@ -6,11 +6,13 @@ public class Obstacle : MonoBehaviour
 {
     public float speed;
     public float boundaryToDespawn;
+    public float uniqueStartHeight;
+    public float uniqueStartX;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector2(uniqueStartX, uniqueStartHeight);
     }
 
     // Update is called once per frame

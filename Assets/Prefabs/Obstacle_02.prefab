@@ -532,6 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: -5
   boundaryToDespawn: -100
+  uniqueStartHeight: 1.95
+  uniqueStartX: 85
 --- !u!1 &6264107850030733305
 GameObject:
   m_ObjectHideFlags: 0
