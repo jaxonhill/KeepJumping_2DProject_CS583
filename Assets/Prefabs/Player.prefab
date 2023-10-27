@@ -154,7 +154,7 @@ MonoBehaviour:
   jumpHeight: 30
   bouncePadHeight: 50
   enemyHeadBounceHeight: 50
-  GOD_MODE: 1
+  GOD_MODE: 0
   godModeJumpHeight: 50
   ground: {fileID: 9146558871730451357, guid: d08c0846a739bf044baf63aab4d60199, type: 3}
   rb: {fileID: 0}
